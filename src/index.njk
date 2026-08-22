@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Grandma Updates</title>
+  <title>Handum Academy</title>
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <h1>Grandma Updates</h1>
+  <h1>Handum Academy</h1>
 
   {# Loop over all posts, newest first #}
   {% for post in collections.posts | reverse %}
@@ -21,7 +21,7 @@
       {{ post.templateContent | safe }}
     </article>
   {% else %}
-    <p>No updates yet. Mom will add the first one soon!</p>
+    <p>No updates yet. ETA in <6months</p>
   {% endfor %}
 </body>
 </html>
