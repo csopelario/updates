@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Grandma Updates</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <h1>Grandma Updates</h1>
+
+  {% for post in collections.posts | reverse %}
+    <article>
+      <h2><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
+      <time datetime="{{ post.date | date: "%Y-%m-%d" }}">
+        {{ post.date | date: "MMMM D, YYYY" }}
+      </time>
+      {{ post.templateContent | safe }}
+    </article>
+  {% else %}
+    <p>No updates yet. Mom will add the first one soon!</p>
+  {% endfor %}
+</body>
+</html>
