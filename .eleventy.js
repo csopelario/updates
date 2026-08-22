@@ -38,6 +38,7 @@ module.exports = function (eleventyConfig) {
   // 3️⃣ Passthrough copy for static assets (images, CSS, etc.)
   // -------------------------------------------------
   eleventyConfig.addPassthroughCopy("static");
+  eleventyConfig.addPassthroughCopy("src/styles.css");
 
   // -------------------------------------------------
   // 4️⃣ Return the Eleventy configuration

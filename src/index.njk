@@ -2,51 +2,41 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>HandumLabs</title>
-
-  {# Google Font – Lora (friendly serif) #}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="container">
-      <h1 class="logo"><a href="/">HandumLabs</a></h1>
-      <nav class="nav">
-        <a href="/admin" class="nav-link">✏️ Edit</a>
-      </nav>
+  <div class="scene">
+    <div class="hero">
+      <h1 class="wire" aria-label="HandumLabs">
+        <span class="wire-text" data-text="Handum">Handum</span>
+        <span class="wire-text" data-text="Labs">Labs</span>
+      </h1>
+      {% if collections.posts | length == 0 %}
+        <p class="sub">Coming Soon</p>
+      {% endif %}
     </div>
-  </header>
 
-  <main class="container">
-    {% if collections.posts | length == 0 %}
-      <p class="empty-state">No updates yet. Coming Soon!</p>
-    {% else %}
-      <section class="posts-grid">
+    {% if collections.posts | length > 0 %}
+      <section class="posts">
         {% for post in collections.posts | reverse %}
-          <article class="post-card">
-            <h2 class="post-title"><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
-
-            <time class="post-date" datetime="{{ post.date | date("%Y-%m-%d") }}">
-              {{ post.date | date("MMMM D, YYYY") }}
-            </time>
-
-            <div class="post-body">
-              {{ post.templateContent | safe }}
-            </div>
+          <article class="post">
+            <time datetime="{{ post.date | date("%Y-%m-%d") }}">{{ post.date | date("MMMM D, YYYY") }}</time>
+            <h2><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
+            <div class="post-body">{{ post.templateContent | safe }}</div>
           </article>
         {% endfor %}
       </section>
     {% endif %}
-  </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <p>© {{ "now" | date("YYYY") }} HandumLabs – All rights reserved.</p>
-    </div>
-  </footer>
+    <footer class="foot">
+      <span>&copy; {{ "now" | date("YYYY") }} HandumLabs</span>
+      <a href="/admin" class="admin-link">Edit</a>
+    </footer>
+  </div>
 </body>
 </html>
